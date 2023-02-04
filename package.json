@@ -1,6 +1,6 @@
 {
   "name": "routing-controllers-extended-openapi",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Runtime OpenAPI v3 spec generation for routing-controllers-extended",
   "keywords": [
     "routing-controllers",
@@ -60,6 +60,6 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "routing-controllers-extended": "^1.x"
+    "routing-controllers-extended": "1.x"
   }
 }
