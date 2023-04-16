@@ -12,6 +12,8 @@ export * from './decorators'
 export * from './generateSpec'
 export * from './parseMetadata'
 
+type schemaObjects = { [p: string]: oa.SchemaObject }
+
 /**
  * Convert routing-controllers metadata into an OpenAPI specification.
  *
@@ -25,7 +27,10 @@ export function routingControllersToSpec(
   additionalProperties: Partial<oa.OpenAPIObject> = {}
 ): oa.OpenAPIObject {
   const routes = parseRoutes(storage, routingControllerOptions)
-  const spec = getSpec(routes, additionalProperties.components?.schemas || {})
+  const spec = getSpec(
+    routes,
+    (additionalProperties.components?.schemas as schemaObjects) || {}
+  )
 
   return _merge(spec, additionalProperties)
 }

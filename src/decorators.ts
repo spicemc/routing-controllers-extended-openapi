@@ -3,7 +3,7 @@ import {
   OperationObject,
   ReferenceObject,
   ResponsesObject,
-  SchemaObject,
+  // SchemaObject,
 } from 'openapi3-ts'
 import 'reflect-metadata'
 
@@ -115,7 +115,9 @@ export function ResponseSchema(
       const reference: ReferenceObject = {
         $ref: `#/components/schemas/${responseSchemaName}`,
       }
-      const schema: SchemaObject = isArray
+      const schema:
+        | ReferenceObject
+        | { items: ReferenceObject; type: 'array' } = isArray
         ? { items: reference, type: 'array' }
         : reference
       const responses: ResponsesObject = {
