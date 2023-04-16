@@ -36,7 +36,7 @@ const spec = routingControllersToSpec(storage, routingControllersOptions, {
     },
   },
   info: {
-    description: 'Generated with `routing-controllers-openapi`',
+    description: 'Generated with `routing-controllers-extended-openapi`',
     title: 'A sample API',
     version: '1.0.0',
   },

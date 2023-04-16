@@ -52,7 +52,7 @@ export function getOperation(
       ([_, value]) => value && (value.length || Object.keys(value).length)
     )
     .reduce((acc, [key, value]) => {
-      acc[key] = value
+      acc[key as any] = value
       return acc
     }, {} as unknown as oa.OperationObject)
 
@@ -217,8 +217,14 @@ export function getRequestBody(route: IRoute): oa.RequestBodyObject | void {
 
   if (bodyMeta) {
     const bodySchema = getParamSchema(bodyMeta)
-    const { $ref } =
-      'items' in bodySchema && bodySchema.items ? bodySchema.items : bodySchema
+    // const { $ref } =
+    //   'items' in bodySchema && bodySchema.items ? bodySchema.items : bodySchema
+    const $ref =
+      'items' in bodySchema && bodySchema.items && '$ref' in bodySchema.items
+        ? bodySchema.items.$ref
+        : bodySchema && '$ref' in bodySchema
+        ? bodySchema.$ref
+        : ''
 
     return {
       content: {
