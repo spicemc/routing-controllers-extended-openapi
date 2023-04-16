@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [4.0.2] - 2023-04-16
+- Upgraded dependencies
+- Updated sample project
+
 ## [2.2.0] - 2020-11-28
 ### Added
 - Export `getOpenAPIMetadata` and `setOpenAPIMetadata` ([#61](https://github.com/epiphone/routing-controllers-openapi/pull/61))

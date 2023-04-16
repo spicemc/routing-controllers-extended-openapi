@@ -1,6 +1,6 @@
 {
   "name": "routing-controllers-extended-openapi",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Runtime OpenAPI v3 spec generation for routing-controllers-extended",
   "keywords": [
     "routing-controllers",
