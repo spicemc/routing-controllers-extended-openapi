@@ -396,7 +396,7 @@
             "name": "to",
             "required": true,
             "schema": {
-              "pattern": "[^\\/#\\?]+?",
+              "pattern": "(?:(?!-)[^\\/#\\?])+?",
               "type": "number"
             }
           },

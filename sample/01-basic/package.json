@@ -14,12 +14,12 @@
   "dependencies": {
     "body-parser": "^1.20.2",
     "class-transformer": "0.5.1",
-    "class-validator": "0.14.0",
-    "class-validator-jsonschema": "^5.0.0",
+    "class-validator": "0.14.2",
+    "class-validator-jsonschema": "^5.1.0",
     "express": "^4.18.2",
     "reflect-metadata": "^0.1.13",
-    "routing-controllers-extended": "^1.0.7",
-    "routing-controllers-extended-openapi": "file:../../build",
+    "routing-controllers-extended": "^1.0.8",
+    "routing-controllers-extended-openapi": "^4.0.2",
     "swagger-ui-express": "^4.6.2"
   },
   "devDependencies": {
@@ -27,6 +27,6 @@
     "@types/express-serve-static-core": "~4.17.33",
     "@types/swagger-ui-express": "^4.1.3",
     "nodemon": "^2.0.22",
-    "typescript": "^5.0.4"
+    "typescript": "^5.9.2"
   }
 }

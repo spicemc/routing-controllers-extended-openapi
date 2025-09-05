@@ -44,7 +44,7 @@ export function OpenAPI(spec: OpenAPIParam) {
  */
 export function applyOpenAPIDecorator(
   originalOperation: OperationObject,
-  route: IRoute
+  route: IRoute,
 ): OperationObject {
   const { action } = route
   const openAPIParams = [
@@ -64,7 +64,7 @@ export function applyOpenAPIDecorator(
  */
 export function getOpenAPIMetadata(
   target: object,
-  key?: string
+  key?: string,
 ): OpenAPIParam[] {
   return (
     (key
@@ -79,7 +79,7 @@ export function getOpenAPIMetadata(
 export function setOpenAPIMetadata(
   value: OpenAPIParam[],
   target: object,
-  key?: string
+  key?: string,
 ) {
   return key
     ? Reflect.defineMetadata(OPEN_API_KEY, value, target.constructor, key)
@@ -96,7 +96,7 @@ export function ResponseSchema(
     description?: string
     statusCode?: string | number
     isArray?: boolean
-  } = {}
+  } = {},
 ) {
   const setResponseSchema = (source: OperationObject, route: IRoute) => {
     const contentType = options.contentType || getContentType(route)
@@ -139,7 +139,7 @@ export function ResponseSchema(
         const newStatusCodeResponse = _merge(
           {},
           source.responses[statusCode],
-          responses[statusCode]
+          responses[statusCode],
         )
         const newSchema = oldSchema.oneOf
           ? {

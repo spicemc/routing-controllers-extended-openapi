@@ -70,7 +70,7 @@ export class UsersController {
   @ResponseSchema(ModelDto, { isArray: true })
   listUsers(
     @QueryParams() _query?: ListUsersQueryParams,
-    @HeaderParams() _header?: ListUsersHeaderParams
+    @HeaderParams() _header?: ListUsersHeaderParams,
   ) {
     return
   }
@@ -80,7 +80,7 @@ export class UsersController {
   listUsersInRange(
     @Param('to') _to: number,
     @QueryParam('') _emptyQuery: string,
-    @QueryParam('userId', { required: true }) _userId: number
+    @QueryParam('userId', { required: true }) _userId: number,
   ) {
     return
   }
@@ -89,7 +89,7 @@ export class UsersController {
   getUser(
     @Param('userId') _userId: number,
     @HeaderParam('') _emptyHeader: string,
-    @HeaderParam('X-Requested-With') _xRequestedWith: string
+    @HeaderParam('X-Requested-With') _xRequestedWith: string,
   ) {
     return
   }
@@ -111,14 +111,14 @@ export class UsersController {
     statusCode: 201,
   })
   createUserWithType(
-    @QueryParam('user', { type: CreateUserBody }) _user: string
+    @QueryParam('user', { type: CreateUserBody }) _user: string,
   ) {
     return
   }
 
   @Put('/')
   createManyUsers(
-    @Body({ required: true, type: CreateUserBody }) _body: CreateUserBody[]
+    @Body({ required: true, type: CreateUserBody }) _body: CreateUserBody[],
   ) {
     return
   }
@@ -131,7 +131,7 @@ export class UsersController {
   @Post('/:userId/posts')
   createUserPost(
     @Body({ required: true }) _body: CreatePostBody,
-    @BodyParam('token') _token: string
+    @BodyParam('token') _token: string,
   ) {
     return
   }
@@ -150,7 +150,7 @@ export class UsersController {
   putUserDefault(
     @BodyParam('limit') _limit: number,
     @BodyParam('query') _query: UserQuery,
-    @BodyParam('token', { required: true }) _token: string
+    @BodyParam('token', { required: true }) _token: string,
   ) {
     return
   }
@@ -161,7 +161,7 @@ export class UserPostsController {
   @Get('/:postId')
   getUserPost(
     @Param('userId') _userId: number,
-    @Param('postId') _postId: string
+    @Param('postId') _postId: string,
   ) {
     return
   }
