@@ -32,7 +32,7 @@ export function getFullPath(route: IRoute): string {
  */
 export function getOperation(
   route: IRoute,
-  schemas: { [p: string]: oa.SchemaObject }
+  schemas: { [p: string]: oa.SchemaObject },
 ): oa.OperationObject {
   const operation: oa.OperationObject = {
     operationId: getOperationId(route),
@@ -49,12 +49,15 @@ export function getOperation(
 
   const cleanedOperation = Object.entries(operation)
     .filter(
-      ([_, value]) => value && (value.length || Object.keys(value).length)
+      ([_, value]) => value && (value.length || Object.keys(value).length),
     )
-    .reduce((acc, [key, value]) => {
-      acc[key as any] = value
-      return acc
-    }, {} as unknown as oa.OperationObject)
+    .reduce(
+      (acc, [key, value]) => {
+        acc[key as any] = value
+        return acc
+      },
+      {} as unknown as oa.OperationObject,
+    )
 
   return applyOpenAPIDecorator(cleanedOperation, route)
 }
@@ -71,7 +74,7 @@ export function getOperationId(route: IRoute): string {
  */
 export function getPaths(
   routes: IRoute[],
-  schemas: { [p: string]: oa.SchemaObject }
+  schemas: { [p: string]: oa.SchemaObject },
 ): oa.PathObject {
   const routePaths = routes.map((route) => ({
     [getFullPath(route)]: {
@@ -139,7 +142,7 @@ export function getPathParams(route: IRoute): oa.ParameterObject[] {
       }
 
       const meta = route.params.find(
-        (p) => p.name === name && p.type === 'param'
+        (p) => p.name === name && p.type === 'param',
       )
       if (meta) {
         const metaSchema = getParamSchema(meta)
@@ -156,7 +159,7 @@ export function getPathParams(route: IRoute): oa.ParameterObject[] {
  */
 export function getQueryParams(
   route: IRoute,
-  schemas: { [p: string]: oa.SchemaObject }
+  schemas: { [p: string]: oa.SchemaObject },
 ): oa.ParameterObject[] {
   const queries: oa.ParameterObject[] = route.params
     .filter((p) => p.type === 'query')
@@ -178,7 +181,7 @@ export function getQueryParams(
     const currentSchema = schemas[paramSchemaName]
 
     for (const [name, schema] of Object.entries(
-      currentSchema?.properties || {}
+      currentSchema?.properties || {},
     )) {
       queries.push({
         in: 'query',
@@ -209,7 +212,7 @@ export function getRequestBody(route: IRoute): oa.RequestBodyObject | void {
               ? [...(acc.required || []), d.name!]
               : acc.required,
           }),
-          { properties: {}, required: [], type: 'object' }
+          { properties: {}, required: [], type: 'object' },
         )
       : null
 
@@ -223,8 +226,8 @@ export function getRequestBody(route: IRoute): oa.RequestBodyObject | void {
       'items' in bodySchema && bodySchema.items && '$ref' in bodySchema.items
         ? bodySchema.items.$ref
         : bodySchema && '$ref' in bodySchema
-        ? bodySchema.$ref
-        : ''
+          ? bodySchema.$ref
+          : ''
 
     return {
       content: {
@@ -253,7 +256,7 @@ export function getContentType(route: IRoute): string {
       ? 'application/json'
       : 'text/html; charset=utf-8'
   const contentMeta = route.responseHandlers.find(
-    (h) => h.type === 'content-type'
+    (h) => h.type === 'content-type',
   )
   return contentMeta ? contentMeta.value : defaultContentType
 }
@@ -263,7 +266,7 @@ export function getContentType(route: IRoute): string {
  */
 export function getStatusCode(route: IRoute): string {
   const successMeta = route.responseHandlers.find(
-    (h) => h.type === 'success-code'
+    (h) => h.type === 'success-code',
   )
   return successMeta ? successMeta.value + '' : '200'
 }
@@ -288,7 +291,7 @@ export function getResponses(route: IRoute): oa.ResponsesObject {
  */
 export function getSpec(
   routes: IRoute[],
-  schemas: { [p: string]: oa.SchemaObject }
+  schemas: { [p: string]: oa.SchemaObject },
 ): oa.OpenAPIObject {
   return {
     components: { schemas: {} },
@@ -336,14 +339,14 @@ function isRequired(meta: { required?: boolean }, route: IRoute) {
  * reflection.
  */
 function getParamSchema(
-  param: ParamMetadataArgs
+  param: ParamMetadataArgs,
 ): oa.SchemaObject | oa.ReferenceObject {
   const { explicitType, index, object, method } = param
 
   const type: (() => unknown) | unknown = Reflect.getMetadata(
     'design:paramtypes',
     object,
-    method
+    method,
   )[index]
   if (typeof type === 'function' && type.name === 'Array') {
     const items = explicitType

@@ -30,7 +30,7 @@ describe('options', () => {
       createUser(
         @QueryParam('from') _from: number,
         @QueryParam('to', { required: false }) _to: number,
-        @Body({ type: CreateUserBody }) _body: CreateUserBody[]
+        @Body({ type: CreateUserBody }) _body: CreateUserBody[],
       ) {
         return
       }
@@ -38,7 +38,7 @@ describe('options', () => {
       @Post('/:userId')
       createManyUsers(
         @QueryParam('param', { type: ParamType }) _param: string,
-        @Body() _body: CreateUserBody[]
+        @Body() _body: CreateUserBody[],
       ) {
         return
       }

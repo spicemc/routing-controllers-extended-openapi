@@ -53,7 +53,7 @@ describe('parameters', () => {
         @HeaderParam('Authorization', { required: true })
         _authorization: string,
         @QueryParams() _queryRef?: ListUsersQueryParams,
-        @HeaderParams() _headerParams?: ListUsersHeaderParams
+        @HeaderParams() _headerParams?: ListUsersHeaderParams,
       ) {
         return
       }

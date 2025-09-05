@@ -263,7 +263,7 @@ describe('decorators', () => {
     const operation = getOperation(routes.responseSchemaDefaults, {})
     // ensure other metadata doesnt get overwritten by decorator
     expect(operation.operationId).toEqual(
-      'UsersController.responseSchemaDefaults'
+      'UsersController.responseSchemaDefaults',
     )
   })
 
@@ -367,7 +367,7 @@ describe('decorators', () => {
   it('applies @ResponseSchema while retaining inner OpenAPI decorator', () => {
     const operation = getOperation(
       routes.responseSchemaNotOverwritingInnerOpenApiDecorator,
-      {}
+      {},
     )
     expect(operation.description).toEqual('somedescription')
     expect(operation.responses).toEqual({
@@ -391,7 +391,7 @@ describe('decorators', () => {
   it('applies @ResponseSchema while retaining outer OpenAPI decorator', () => {
     const operation = getOperation(
       routes.responseSchemaNotOverwritingOuterOpenApiDecorator,
-      {}
+      {},
     )
     expect(operation.description).toEqual('somedescription')
     expect(operation.responses).toEqual({
@@ -498,7 +498,7 @@ describe('decorators', () => {
   it('applies three @ResponseSchema with same status code', () => {
     const operation = getOperation(
       routes.threeResponseSchemasSameStatusCode,
-      {}
+      {},
     )
     expect(operation.responses).toEqual({
       '200': {
@@ -521,7 +521,7 @@ describe('decorators', () => {
   it('applies two @ResponseSchema with same status code, where one of them is an array', () => {
     const operation = getOperation(
       routes.twoResponseSchemaSameStatusCodeWithOneArraySchema,
-      {}
+      {},
     )
     expect(operation.responses).toEqual({
       '200': {
@@ -548,7 +548,7 @@ describe('decorators', () => {
   it('applies four @ResponseSchema with mixed status code, where two of them are arrays', () => {
     const operation = getOperation(
       routes.fourResponseSchemasMixedStatusCodeWithTwoArraySchemas,
-      {}
+      {},
     )
     expect(operation.responses).toEqual({
       '200': {
@@ -641,7 +641,7 @@ describe('@OpenAPI-decorated class', () => {
         externalDocs: { url: 'http://docs.com' },
         security: [{ basicAuth: [] }],
         summary: 'Method-specific summary',
-      })
+      }),
     )
 
     expect(getOperation(routes.getItem, {})).toEqual(
@@ -650,7 +650,7 @@ describe('@OpenAPI-decorated class', () => {
         externalDocs: { url: 'http://docs.com' },
         security: [],
         summary: 'Get item',
-      })
+      }),
     )
   })
 })

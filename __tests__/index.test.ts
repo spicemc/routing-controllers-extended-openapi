@@ -164,16 +164,16 @@ describe('index', () => {
     expect(expressToOpenAPIPath('/users')).toEqual('/users')
     expect(expressToOpenAPIPath('/users/:userId')).toEqual('/users/{userId}')
     expect(expressToOpenAPIPath('/users/:userId/:from-:to')).toEqual(
-      '/users/{userId}/{from}-{to}'
+      '/users/{userId}/{from}-{to}',
     )
     expect(expressToOpenAPIPath('/users/:userId/:limit?')).toEqual(
-      '/users/{userId}/{limit}'
+      '/users/{userId}/{limit}',
     )
     expect(expressToOpenAPIPath('/users/:userId(\\d+)')).toEqual(
-      '/users/{userId}'
+      '/users/{userId}',
     )
     expect(expressToOpenAPIPath('/users/:type(user|admin)')).toEqual(
-      '/users/{type}'
+      '/users/{type}',
     )
   })
 

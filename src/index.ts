@@ -24,12 +24,12 @@ type schemaObjects = { [p: string]: oa.SchemaObject }
 export function routingControllersToSpec(
   storage: MetadataArgsStorage,
   routingControllerOptions: RoutingControllersOptions = {},
-  additionalProperties: Partial<oa.OpenAPIObject> = {}
+  additionalProperties: Partial<oa.OpenAPIObject> = {},
 ): oa.OpenAPIObject {
   const routes = parseRoutes(storage, routingControllerOptions)
   const spec = getSpec(
     routes,
-    (additionalProperties.components?.schemas as schemaObjects) || {}
+    (additionalProperties.components?.schemas as schemaObjects) || {},
   )
 
   return _merge(spec, additionalProperties)
